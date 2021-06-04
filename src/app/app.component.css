@@ -1,0 +1,28 @@
+.max-width-logo {
+    max-width: 50px;
+}
+
+.max-width-logo-text {
+    max-width: 170px;
+}
+
+.btn-clp {
+    flex-basis: unset;
+    flex-grow: unset;
+    align-items: unset;
+}
+
+.text-invisible {
+    font-size: 0px;
+}
+
+.state-small {
+    font-size: 6px;
+}
+
+.state-position {
+    position: relative;
+    top: 6px;
+    right: 6px;
+    z-index: 2;
+}
