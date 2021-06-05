@@ -9,12 +9,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { PieSocioeconomicoComponent } from './components/pie-socioeconomico/pie-socioeconomico.component';
+import { RadarGruposComponent } from './components/radar-grupos/radar-grupos.component';
+import { BarrasGeneroComponent } from './components/barras-genero/barras-genero.component';
+
+import { ChartsModule } from 'ng2-charts';
+import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-poblacion.component';
+import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatisticsComponent,
-    HomeComponent
+    HomeComponent,
+    PieSocioeconomicoComponent,
+    RadarGruposComponent,
+    BarrasGeneroComponent,
+    BarrasPoblacionComponent,
+    PieEnfermedadesComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
