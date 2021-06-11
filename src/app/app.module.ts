@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PieSocioeconomicoComponent } from './components/pie-socioeconomico/pie-socioeconomico.component';
 import { RadarGruposComponent } from './components/radar-grupos/radar-grupos.component';
 import { BarrasGeneroComponent } from './components/barras-genero/barras-genero.component';
@@ -16,6 +16,7 @@ import { BarrasGeneroComponent } from './components/barras-genero/barras-genero.
 import { ChartsModule } from 'ng2-charts';
 import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-poblacion.component';
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
+import { RegistroPacientesComponent } from './components/registro-pacientes/registro-pacientes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfe
     RadarGruposComponent,
     BarrasGeneroComponent,
     BarrasPoblacionComponent,
-    PieEnfermedadesComponent
+    PieEnfermedadesComponent,
+    RegistroPacientesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfe
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     ChartsModule
   ],
   providers: [],
