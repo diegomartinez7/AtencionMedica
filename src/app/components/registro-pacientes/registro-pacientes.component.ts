@@ -1,3 +1,4 @@
+import { TmplAstRecursiveVisitor } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms'
 
@@ -14,7 +15,6 @@ export class RegistroPacientesComponent implements OnInit {
   soloNumeros = /^\d+$/;
 
   sexo: string = '';
-
   formRegistro = this.formBuilder.group({
     newName: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
     newEst: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
@@ -34,21 +34,31 @@ export class RegistroPacientesComponent implements OnInit {
   }
 
   isValidField(field: string){
-    return(
-      // this.formRegistro.get(field).touched && !this.formRegistro.get(field).valid
-      this.formRegistro.get(field)?.touched && !this.formRegistro.get(field)?.valid
-      
-    );
+
+    switch(field){
+      case 'sx':
+      case 'selectEdo':
+      case 'selectPob':
+      case 'selectIngreso':
+        if((this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.value == 'nada') || (this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.invalid)){
+          return true;
+        }
+        else{
+          return false;
+        }
+      default: return (this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.invalid);
+
+    }
 
   }
   sendData(){
     let data = {
-      nombre: this.formRegistro.get('newName')?.value,
+      nombre: this.formRegistro.get('newName')?.value.trim(),
       estatura: this.formRegistro.get('newEst')?.value,
       peso: this.formRegistro.get('newPeso')?.value,
       edad: this.formRegistro.get('newEdad')?.value,
       sexo: this.formRegistro.get('sx')?.value,
-      alergias: this.formRegistro.get('newAlergias')?.value,
+      alergias: this.formRegistro.get('newAlergias')?.value.trim(),
       estado: this.formRegistro.get('selectEdo')?.value,
       poblacion: this.formRegistro.get('selectPob')?.value,
       clase: this.formRegistro.get('selectIngreso')?.value,
