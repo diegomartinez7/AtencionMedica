@@ -16,6 +16,8 @@ import { BarrasGeneroComponent } from './components/barras-genero/barras-genero.
 import { ChartsModule } from 'ng2-charts';
 import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-poblacion.component';
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
+import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfe
     RadarGruposComponent,
     BarrasGeneroComponent,
     BarrasPoblacionComponent,
-    PieEnfermedadesComponent
+    PieEnfermedadesComponent,
+    IniciosesionComponent,
   ],
   imports: [
     BrowserModule,
