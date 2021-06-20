@@ -1,0 +1,120 @@
+<form action="" class="p-3" [formGroup]="formRegistro">
+    <div class="mb-3">
+        <label for="nombre" class="form-label text-success fw-bolder">Nombre Completo: </label>
+        <input type="text" class="form-control" id="nombre" formControlName="newName" name="nombre">
+        <small class="text-danger d-block" *ngIf="isValidField('newName')">
+            Debes escribir un nombre válido. Sólo se permiten letras
+        </small>
+    </div>
+    <div class="mb-3">
+        <label for="sexo" class="form-label text-success fw-bolder">Sexo: </label>
+        <select class="form-select" formControlName="sx" id="sexo">
+            <option value="nada" selected>Seleccione una opción</option>
+            <option value="masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+        </select>
+        <small class="text-danger d-block" *ngIf="isValidField('sx')">
+            Debes seleccionar un valor
+        </small>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-4">
+                <label for="estatura" class="form-label text-success fw-bolder">Estatura (m): </label>
+                <input type="number" id="estatura" class="form-control" min="0" formControlName="newEst" name="estatura">
+                <small class="text-danger d-block" *ngIf="isValidField('newEst')">
+                    Debes escribir un valor válido. Sólo se permiten números
+                </small>
+            </div>
+            <div class="col-4">
+                <label for="peso" class="form-label text-success fw-bolder">Peso (Kg): </label>
+                <input type="number" id="peso" class="form-control" min="0" formControlName="newPeso" name="peso">
+                <small class="text-danger d-block" *ngIf="isValidField('newPeso')">
+                    Debes escribir un valor válido. Sólo se permiten números
+                </small>
+            </div>
+            <div class="col-4">
+                <label for="edad" class="form-label text-success fw-bolder">Edad: </label>
+                <input type="number" class="form-control" id="edad" min="0" formControlName="newEdad" name="edad">
+                <small class="text-danger d-block" *ngIf="isValidField('newEdad')">
+                    Debes escribir un valor válido. Sólo se permiten números
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="alergia" class="form-label text-success fw-bolder">Alergias: </label>
+        <input type="text" id="alergia" class="form-control" formControlName="newAlergias" name="alergias">
+    </div>
+    <div class="mb-3">
+        <label for="entidad" class="form-label text-success fw-bolder">Entidad federativa: </label>
+        <select class="form-select" aria-label="Default select example" id="entidad" formControlName="selectEdo">
+            <option value="nada" selected>Seleccione una opción</option>
+            <option value="Aguascalientes">Aguascalientes</option>
+            <option value="Baja California">Baja California</option>
+            <option value="Baja California Sur">Baja California Sur</option>
+            <option value="Campeche">Campeche</option>
+            <option value="Chiapas">Chiapas</option>
+            <option value="Chihuahua">Chihuahua</option>
+            <option value="CDMX">Ciudad de México</option>
+            <option value="Coahuila">Coahuila</option>
+            <option value="Colima">Colima</option>
+            <option value="Durango">Durango</option>
+            <option value="Estado de México">Estado de México</option>
+            <option value="Guanajuato">Guanajuato</option>
+            <option value="Guerrero">Guerrero</option>
+            <option value="Hidalgo">Hidalgo</option>
+            <option value="Jalisco">Jalisco</option>
+            <option value="Michoacán">Michoacán</option>
+            <option value="Morelos">Morelos</option>
+            <option value="Nayarit">Nayarit</option>
+            <option value="Nuevo León">Nuevo León</option>
+            <option value="Oaxaca">Oaxaca</option>
+            <option value="Puebla">Puebla</option>
+            <option value="Querétaro">Querétaro</option>
+            <option value="Quintana Roo">Quintana Roo</option>
+            <option value="San Luis Potosí">San Luis Potosí</option>
+            <option value="Sinaloa">Sinaloa</option>
+            <option value="Sonora">Sonora</option>
+            <option value="Tabasco">Tabasco</option>
+            <option value="Tamaulipas">Tamaulipas</option>
+            <option value="Tlaxcala">Tlaxcala</option>
+            <option value="Veracruz">Veracruz</option>
+            <option value="Yucatán">Yucatán</option>
+            <option value="Zacatecas">Zacatecas</option>
+        </select>
+        <small class="text-danger d-block" *ngIf="isValidField('selectEdo')">
+            Debes seleccionar un valor
+        </small>
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label text-success fw-bolder">Población: </label>
+        <select class="form-select" aria-label="Default select example" formControlName="selectPob">
+            <option value="nada" selected>Seleccione una opción</option>
+            <option value="urbano">Urbano</option>
+            <option value="rural">Rural</option>
+        </select>
+        <small class="text-danger d-block" *ngIf="isValidField('selectPob')">
+            Debes seleccionar un valor
+        </small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label text-success fw-bolder">Ingreso mensual: </label>
+        <select class="form-select" aria-label="Default select example" formControlName="selectIngreso">
+            <option value="nada" selected>Seleccione una opción</option>
+            <option value="baja">Menor a $6000</option>
+            <option value="media">$6000 - $20000</option>
+            <option value="alta">Mayor a $20000</option>
+        </select>
+        <small class="text-danger d-block" *ngIf="isValidField('selectIngreso')">
+            Debes seleccionar un valor
+        </small>
+    </div>
+    <!-- <div class="mb-2">
+        <input type="submit" title="Enviar"  class="btn btn-success">
+    </div> -->
+</form>
+<div class="mb-2">
+    <button class="btn btn-success" (click)="sendData()">Enviar</button>
+</div>
+
