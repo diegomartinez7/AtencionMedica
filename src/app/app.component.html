@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbar-bg px-5">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-bg px-5" *ngIf="currentRoute != '/iniciosesion'">
     <div class="container-fluid">
       <div class="my-auto">
             <img src="assets/img/logo_circle_white.png" alt="Icono" class="img-fluid max-width-logo me-2">
@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse multi-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav mx-auto">
             <a class="nav-link" aria-current="page" routerLink="/inicio" routerLinkActive="active">Inicio</a>
-            <a class="nav-link" routerLink="/pacientes" routerLinkActive="active">Pacientes</a>
+            <a class="nav-link" routerLink="/registro_paciente" routerLinkActive="active">Pacientes</a>
             <a class="nav-link" routerLink="/consultas" routerLinkActive="active">Consultas</a>
             <a class="nav-link" routerLink="/estadisticas" routerLinkActive="active">Estadísticas</a>
         </div>
@@ -24,7 +24,7 @@
             <sub class="badge border rounded-circle state-position state-small" [ngClass]="{'bg-success': estado, 'bg-danger': !estado}">
               <span class="text-invisible">.</span>
             </sub>
-            Usuario Daymon
+            <span>{{usuario.nombre}}</span>
           </button>
           <form class="dropdown-menu p-3" aria-labelledby="cerrarSesion">
               <div class="form-check">
@@ -42,4 +42,16 @@
     </div>
 </nav>
 
-<router-outlet></router-outlet>
+<section [ngClass]="sectionClases()">
+  <aside class="col-xl-3 d-none d-xl-block bg-section text-white" *ngIf="currentRoute != '/iniciosesion'">
+    <article class="container p-5 position-sticky sticky-top">
+      <img src="assets/img/doctor_icon.png" alt="Imagen de doctor" class="img-fluid" *ngIf="usuario.tipo==1">
+      <img src="assets/img/nurse_icon.png" alt="Imagen de enfermera" class="img-fluid" *ngIf="usuario.tipo==2">
+      <img src="assets/img/personal_icon.png" alt="Imagen de personal" class="img-fluid" *ngIf="usuario.tipo==3">
+      <p class="h4 text-center"><span *ngIf="usuario.tipo==1">Dr. </span>{{usuario.nombre}}</p>
+    </article>
+  </aside>
+  <div [ngClass]="routerClases()">
+    <router-outlet></router-outlet>
+  </div>
+</section>
