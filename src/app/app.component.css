@@ -26,3 +26,11 @@
     right: 6px;
     z-index: 2;
 }
+
+.section-height {
+    height: calc(100vh - 63px);
+}
+
+.bg-section {
+    background-color: rgb(110, 140, 140);
+}
