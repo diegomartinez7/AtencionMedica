@@ -22,7 +22,7 @@ connection.connect((err,res) => {
 
 app.listen(3000, (err, res) =>{
     if(err){
-        console.log('Error al levantar el servidpr');
+        console.log('Error al levantar el servidor');
         return;
     }
     console.log('Apis escuchando en el puerto 3000');

@@ -1,4 +1,3 @@
-import { TmplAstRecursiveVisitor } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms'
 
@@ -16,16 +15,14 @@ export class RegistroPacientesComponent implements OnInit {
 
   sexo: string = '';
   formRegistro = this.formBuilder.group({
-    newName: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
-    newEst: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
-    newPeso: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
-    newEdad: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
-    newAlergias: [''],
-    selectEdo:['',[Validators.required]],
-    selectPob:['',[Validators.required]],
-    selectIngreso:['',[Validators.required]],
-    sx:['',[Validators.required]]
-
+    Nombre: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
+    Apellidos: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
+    Genero:['',[Validators.required]],
+    Edad: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
+    Nivel_S:['',[Validators.required]],
+    Poblacion:['',[Validators.required]],
+    Enfermedades: ['', [Validators.required]],
+    Tipo_E:['',[Validators.required]],
   });
 
   constructor(private formBuilder: FormBuilder) { }
@@ -34,12 +31,12 @@ export class RegistroPacientesComponent implements OnInit {
   }
 
   isValidField(field: string){
-
     switch(field){
-      case 'sx':
-      case 'selectEdo':
-      case 'selectPob':
-      case 'selectIngreso':
+      case 'Genero':
+      case 'Tipo_E':
+      case 'Poblacion':
+      case 'Nivel_S':
+      case 'Enfermedades':
         if((this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.value == 'nada') || (this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.invalid)){
           return true;
         }
@@ -47,25 +44,19 @@ export class RegistroPacientesComponent implements OnInit {
           return false;
         }
       default: return (this.formRegistro.get(field)?.touched && this.formRegistro.get(field)?.invalid);
-
     }
-
   }
+
+  clearForm(){
+    this.formRegistro.reset();
+  }
+
   sendData(){
-    let data = {
-      nombre: this.formRegistro.get('newName')?.value.trim(),
-      estatura: this.formRegistro.get('newEst')?.value,
-      peso: this.formRegistro.get('newPeso')?.value,
-      edad: this.formRegistro.get('newEdad')?.value,
-      sexo: this.formRegistro.get('sx')?.value,
-      alergias: this.formRegistro.get('newAlergias')?.value.trim(),
-      estado: this.formRegistro.get('selectEdo')?.value,
-      poblacion: this.formRegistro.get('selectPob')?.value,
-      clase: this.formRegistro.get('selectIngreso')?.value,
-    };
-    console.log('Data: ' + JSON.stringify(data));
-    
-    
+    let data = this.formRegistro.getRawValue();
+    data.Nombre = data.Nombre?.trim();
+    data.Apellidos = data.Apellidos?.trim();
+    data.Enfermedades = data.Enfermedades?.trim();
+    console.log(data);
   }
 
 }
