@@ -1,0 +1,12 @@
+#titulo h1{
+  color: whitesmoke;
+  margin: 10px;
+  padding: 10px;
+}
+
+#cuerpo{
+    padding: 5%;
+}
+#forma{
+    text-align: center;
+}

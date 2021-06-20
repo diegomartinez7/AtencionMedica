@@ -17,6 +17,7 @@
       </div>
       <!-- Dropdown de usuario activo -->
       <div class="btn-group collapse navbar-collapse btn-clp multi-collapse">
+
           <button class="btn-secondary dropdown-toggle" mat-flat-button id="cerrarSesion" data-bs-toggle="dropdown" 
             data-bs-auto-close="false" aria-expanded="false">
             <mat-icon>account_circle</mat-icon>
@@ -35,7 +36,7 @@
                 <label for="state2">Ocupado</label>
               </div>
               <hr>
-              <button class="btn btn-dark w-100">Cerrar sesión</button>
+              <button class="btn btn-dark w-100" (click)="cerrarSesion()">Cerrar sesión</button>
           </form>
       </div>
     </div>
