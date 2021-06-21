@@ -62,9 +62,9 @@
         <div class="row">
             <div class="col-6">
                 <label for="presion_A" class="form-label text-success fw-bolder">Presión arterial: </label>
-                <input type="number" class="form-control" id="presion_A" min="0" formControlName="Presion_A" name="presion_A">
+                <input type="text" class="form-control" id="presion_A" formControlName="Presion_A" name="presion_A">
                 <small class="text-danger d-block" *ngIf="isValidField('Presion_A')">
-                    Sólo se permiten números.
+                    El campo no puede estar vacío
                 </small>
             </div>
             <div class="col-6">

@@ -76,7 +76,7 @@ export class ConsultasComponent implements OnInit {
     const modalRespuesta = await this.dialog.open(ModalComponent, {
       //Establecemos la información a mandarle al modal
       data: {
-        tipo: "Consulta" //AQUÍ SE MANDA QUE EL MODAL SEA DE REGISTRO DE CONSULTA
+        tipo: "Consulta" //Especificamos que el modal sea de consulta
       },
       width: 'auto',
       height: 'auto'

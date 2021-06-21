@@ -32,6 +32,6 @@ export class ConsultasService {
     }
 
     sendRequest(pacienteID: number, consulta: any): Observable<any> {
-        return this.httpClient.post(this.endpoint + `/${pacienteID}`, consulta) as Observable<any>;
+        return this.httpClient.post("http://localhost:3000/solicitud" + `/${pacienteID}`, consulta) as Observable<any>;
     }
 }

@@ -74,7 +74,6 @@ export class SolicitudConsultaComponent implements OnInit {
       this.pacienteID = Number(this.pacienteID);
       try {
         await this._consultasService.sendRequest(this.pacienteID, data).toPromise();
-        this.formRegistro.reset();
       } catch (error) {
         console.log(error.err);
       }
