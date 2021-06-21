@@ -1,0 +1,71 @@
+<div class="container my-3">
+    <h1 class="text-center">Expedientes</h1>
+</div>
+
+<div class="container my-3">
+    <p class="h5 text-secondary">Los siguientes registros forman parte de la información recabada de pacientes, con su respectivo historial clínico y notas médicas.</p>
+</div>
+
+<div class="container text-end my-4">
+    <button class="btn-primary" mat-flat-button matTooltip="Registra un nuevo paciente" 
+        [matTooltipPosition]="'left'" (click)="registrarPaciente()">
+        Abrir expediente<mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="ps-3 mt-3 table-container">
+    <table mat-table #table3 [dataSource]="dataSourceExpedientes" multiTemplateDataRows>
+        <!-- Columnas de la tabla y qué información mostrarán -->
+        <ng-container matColumnDef="Apellidos">
+            <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Apellidos}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Genero">
+            <th mat-header-cell *matHeaderCellDef>Genero</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Genero}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Edad">
+            <th mat-header-cell *matHeaderCellDef>Edad</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Edad}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Poblacion">
+            <th mat-header-cell *matHeaderCellDef>Poblacion</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Poblacion}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Enfermedades">
+            <th mat-header-cell *matHeaderCellDef>Enfermedades</th>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Enfermedades}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Resultados">
+            <th mat-header-cell *matHeaderCellDef>Resultados</th>
+            <td mat-cell *matCellDef="let expediente">
+                <span *ngIf="expediente.resultados != null">{{expediente.Resultados}}</span>
+                <button class="btn btn-secondary" *ngIf="expediente.resultados == null">Añadir</button>
+            </td>
+        </ng-container>
+
+        <!-- Contenido expandible de cada evento -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let event" [attr.colspan]="7">
+                <div class="event-detail"
+                    [@detailExpand]="event == expandedEvent ? 'expanded' : 'collapsed'">
+                    <div class="mt-2">
+                        <h6><b>Consultas:</b></h6>
+                        <!-- <p>{{event.observations? event.observations : '[No hay observaciones para mostrar]'}}</p> -->
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Definición de la fila de headers, las filas en general y la expansión de contenido en las filas -->
+        <tr mat-header-row *matHeaderRowDef="['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']; sticky: true"></tr>
+        <tr class="event-row" mat-row
+            *matRowDef="let row; columns: ['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']"
+            (dblclick)="expandedEvent = expandedEvent === row? null : row"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="event-detail-height"></tr>
+    </table>
+</div>
