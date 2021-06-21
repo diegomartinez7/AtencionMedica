@@ -1,0 +1,33 @@
+tr.event-detail-height {
+    height: 0;
+}
+
+tr.event-row:hover {
+    background: rgb(150, 170, 170);
+    cursor: pointer;
+}
+
+.event-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+table {
+    width: 100%;
+    background-color: rgb(210, 230, 230);
+}
+
+.table-container {
+    overflow: auto;
+    height: calc(100vh - 255px);
+    max-width: 100%;
+}
+
+.mat-column-Apellidos, .mat-column-Nombre{
+    flex: 0 0 200px;
+    width: 200px;
+}
+
+.mat-header-row {
+    background-color: rgb(230, 245, 245);
+}

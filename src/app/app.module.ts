@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
-import { HomeComponent } from './components/home/home.component';
+import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,12 +21,13 @@ import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-p
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
 import { RegistroPacientesComponent } from './components/registro-pacientes/registro-pacientes.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
+import { ConsultasComponent } from './components/consultas/consultas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatisticsComponent,
-    HomeComponent,
+    ExpedienteComponent,
     PieSocioeconomicoComponent,
     RadarGruposComponent,
     BarrasGeneroComponent,
@@ -31,11 +35,15 @@ import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.co
     PieEnfermedadesComponent,
     RegistroPacientesComponent,
     IniciosesionComponent,
+    ConsultasComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MatIconModule,
+    MatTooltipModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,

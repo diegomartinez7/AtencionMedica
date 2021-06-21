@@ -39,7 +39,7 @@ router.post('/usuario', [
     body('Contrasena').not().isEmpty().isString(),
     body('Telefono').not().isEmpty().isString(),
     body('Tipo').not().isEmpty().isNumeric(),
-    body('Disponibilidad').not().isEmpty().isString()
+    body('Disponibilidad').not().isEmpty().isNumeric()
 ],(req,res) =>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) { 
@@ -54,15 +54,15 @@ router.post('/usuario', [
 });
 
 //actualizar usuario
-router.put('/usuario', [ 
+router.put('/usuario/:id', [ 
     body('Nombre').not().isEmpty().isString(),
     body('Apellidos').not().isEmpty().isString(),
     body('Correo').not().isEmpty().isString(),
     body('Contrasena').not().isEmpty().isString(),
     body('Telefono').not().isEmpty().isString(),
     body('Tipo').not().isEmpty().isNumeric(),
-    body('Disponibilidad').not().isEmpty().isString(),
-    body('Id').not().isEmpty().isString()
+    body('Disponibilidad').not().isEmpty().isNumeric(),
+    param('id').not().isEmpty().isNumeric()
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) { 
@@ -70,15 +70,16 @@ router.put('/usuario', [
         return 
     }
 
-    let body = req.body; 
-    user.putUser(connection, body, (data => { 
+    let body = req.body;
+    let id = req.params.id;
+    user.putUser(connection, id, body, (data => { 
         res.json(data); 
     }))
 });
 
 // borrar usuario
-router.delete('/usuario', [
-    body('Id').not().isEmpty().isNumeric()
+router.delete('/usuario/:id', [
+    param('id').not().isEmpty().isNumeric()
 ],(req,res) =>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) { 
@@ -86,8 +87,8 @@ router.delete('/usuario', [
         return 
     }
 
-    let body = req.body;
-    user.deleteUser(connection, body, (data => { 
+    let id = req.params.id; 
+    user.deleteUser(connection, id, (data => { 
         res.json(data); 
     }))
 });

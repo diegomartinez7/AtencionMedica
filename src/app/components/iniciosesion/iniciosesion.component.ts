@@ -17,12 +17,11 @@ export class IniciosesionComponent implements OnInit {
 
   ngOnInit(): void {
     if(this._sesionesService.sesionIniciada()){
-      this.router.navigateByUrl('/inicio');
+      this.router.navigateByUrl('/expedientes');
     }
   }
 
   validacionLogin(){
-    
     //LO QUE SIGUE ES SI EL USUARIO PASÓ EL LOG IN
     let usuario = {
       nombre: "Don Cheto",
@@ -33,7 +32,7 @@ export class IniciosesionComponent implements OnInit {
     this._sesionesService.iniciarSesion(usuario);
 
     //Si todo está en orden y puede iniciar sesión, redirigimos hacia inicio
-    this.router.navigateByUrl('/inicio');
+    this.router.navigateByUrl('/expedientes');
   }
 
 }
