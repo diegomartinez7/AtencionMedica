@@ -24,7 +24,7 @@ import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.co
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { LlamadaComponent } from './components/llamada/llamada.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SolicitudConsultaComponent } from './components/consultas/solicitud-consulta/solicitud-consulta.component';
 
 @NgModule({
@@ -58,7 +58,7 @@ import { SolicitudConsultaComponent } from './components/consultas/solicitud-con
     ReactiveFormsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true, hasBackdrop: true } },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

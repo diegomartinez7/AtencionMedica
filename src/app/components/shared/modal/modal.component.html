@@ -4,5 +4,7 @@
     </span>
 </div>
 
-<app-registro-pacientes *ngIf="informacion.tipo == 'Paciente'"></app-registro-pacientes>
-<app-solicitud-consulta *ngIf="informacion.tipo == 'Consulta'"></app-solicitud-consulta>
+<div class="scroll">
+    <app-registro-pacientes *ngIf="informacion.tipo == 'Paciente'"></app-registro-pacientes>
+    <app-solicitud-consulta *ngIf="informacion.tipo == 'Consulta'"></app-solicitud-consulta>
+</div>

@@ -52,8 +52,8 @@
     </article>
     <article *ngIf="(solicitudes.length > 0)">
       <div *ngFor="let elemnt of solicitudes; let i = index">
-        <div class="d-flex my-2">
-          <p class="pt-1 mx-2">Solicitud {{i+1}}</p>
+        <div class="d-flex my-2 justify-content-around py-2 px-3">
+          <p class="pt-1 mx-2 my-auto"><b>Solicitud {{i+1}}</b></p>
           <button class="btn btn-warning btn-sm" (click)="popSolicitud(i)">Aceptar</button>
         </div>
       </div>
