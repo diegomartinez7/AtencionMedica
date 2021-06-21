@@ -31,7 +31,7 @@ module.exports = {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                 return; 
             } 
-            callback({ array: results, id: null, success: true });
+            callback({ array: results, id: results.id, success: true });
         });
     },
     // Actualizar consulta

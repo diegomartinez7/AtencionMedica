@@ -26,6 +26,7 @@ import { LlamadaComponent } from './components/llamada/llamada.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SolicitudConsultaComponent } from './components/consultas/solicitud-consulta/solicitud-consulta.component';
+import { ConsultaActivaComponent } from './components/expediente/consulta-activa/consulta-activa.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SolicitudConsultaComponent } from './components/consultas/solicitud-con
     ConsultasComponent,
     ModalComponent,
     SolicitudConsultaComponent,
+    ConsultaActivaComponent,
   ],
   imports: [
     BrowserModule,

@@ -34,3 +34,7 @@
 .bg-section {
     background-color: rgb(110, 140, 140);
 }
+
+aside {
+    z-index: 1;
+}

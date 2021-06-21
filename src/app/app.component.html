@@ -50,6 +50,7 @@
       <img src="assets/img/personal_icon.png" alt="Imagen de personal" class="img-fluid" *ngIf="usuario.tipo==3">
       <p class="h4 text-center"><span *ngIf="usuario.tipo==1">Dr. </span>{{usuario.nombre}}</p>
     </article>
+    <a href="https://meet.google.com/pdm-mgdc-mpy" target="_blank" #link hidden></a>
     <article *ngIf="(solicitudes.length > 0)">
       <div *ngFor="let elemnt of solicitudes; let i = index">
         <div class="d-flex my-2 justify-content-around py-2 px-3">
