@@ -20,6 +20,7 @@ export class ExpedienteComponent implements OnInit {
   pacientes: any = [];
   expedientes: any = [];
 
+  expedienteColumnas: string[] = ['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados'];
   dataSourceExpedientes = new MatTableDataSource<any>();
   expandedEvent: any | null;
 

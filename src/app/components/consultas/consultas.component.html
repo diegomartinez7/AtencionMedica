@@ -1,1 +1,79 @@
-<p>consultas works!</p>
+<div class="container my-3">
+    <h1 class="text-center">Consultas</h1>
+</div>
+
+<div class="container my-3">
+    <p class="h5 text-secondary">A continuación se muestran las consultas que se han realizado hacia el sistema y que pueden ser filtradas por paciente</p>
+</div>
+
+<div class="container text-end my-4 d-flex justify-content-end">
+    <select class=" w-25 mx-2" [(ngModel)]="filtroPaciente" (ngModelChange)="filtrarConsultas($event)" name="filtroP">
+        <option value="Todos" selected>Todas las consultas</option>
+        <option [value]="paciente.ID" *ngFor="let paciente of pacientes">
+            {{paciente.Apellidos + ' ' + paciente.Nombre}}
+        </option>
+    </select>
+    <button class="btn-primary" mat-flat-button matTooltip="Solicitar una consulta" 
+        [matTooltipPosition]="'left'" (click)="hacerConsulta()">
+        Realizar consulta<mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="ps-3 mt-3 table-container">
+    <table mat-table #table3 [dataSource]="dataSourceConsultas" multiTemplateDataRows>
+        <!-- Columnas de la tabla y qué información mostrarán -->
+        <ng-container matColumnDef="Apellidos">
+            <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Apellidos}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Nombre}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Fecha">
+            <th mat-header-cell *matHeaderCellDef>Fecha</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Fecha}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Peso">
+            <th mat-header-cell *matHeaderCellDef>Peso</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Peso}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Talla">
+            <th mat-header-cell *matHeaderCellDef>Talla</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Talla}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Temperatura">
+            <th mat-header-cell *matHeaderCellDef>Temperatura</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Temperatura}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Presion_A">
+            <th mat-header-cell *matHeaderCellDef>Presion_A</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Presion_A}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Pulso">
+            <th mat-header-cell *matHeaderCellDef>Pulso</th>
+            <td mat-cell *matCellDef="let consulta">{{consulta.Pulso}}</td>
+        </ng-container>
+
+        <!-- Contenido expandible de cada evento -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let event" [attr.colspan]="8">
+                <div class="event-detail"
+                    [@detailExpand]="event == expandedEvent ? 'expanded' : 'collapsed'">
+                    <div class="mt-2">
+                        <h6><b>Diagnóstico:</b></h6>
+                        <p>{{event.Diagnostico}}</p>
+                        <h6><b>Nota:</b></h6>
+                        <p>{{event.Nota}}</p>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Definición de la fila de headers, las filas en general y la expansión de contenido en las filas -->
+        <tr mat-header-row *matHeaderRowDef="consultaColumnas; sticky: true"></tr>
+        <tr class="event-row" mat-row *matRowDef="let row; columns: consultaColumnas"
+            (click)="expandedEvent = expandedEvent === row? null : row"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="event-detail-height"></tr>
+    </table>
+</div>
