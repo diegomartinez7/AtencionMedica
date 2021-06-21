@@ -44,7 +44,7 @@ export class RegistroPacientesComponent implements OnInit {
     }
   }
 
-  clearForm(){
+  clearForm(){//
     this.formRegistro.reset();
   }
 

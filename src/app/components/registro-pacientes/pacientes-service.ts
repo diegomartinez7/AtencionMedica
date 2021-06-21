@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class PacientesService {
     endpoint: string = "http://localhost:3000" + "/paciente";
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) { }//
 
     getAll(): Observable<any> {
         return this.httpClient.get(this.endpoint) as Observable<any>;
