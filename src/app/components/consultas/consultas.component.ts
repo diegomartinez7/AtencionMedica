@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ConsultasService } from './consultas.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../shared/modal/modal.component';
+import jsPDF from "jspdf";
 
 @Component({
   selector: 'app-consultas',
@@ -83,6 +84,37 @@ export class ConsultasComponent implements OnInit {
     }).afterClosed().toPromise();
 
     console.log(modalRespuesta);
+  }
+
+  documento(event: any){
+    const doc = new jsPDF();
+
+        let pageW = doc.internal.pageSize.getWidth();
+        let pageH = doc.internal.pageSize.getHeight();
+
+        let img = new Image();
+        img.src = 'assets/img/fondoSISSSTEM.png';
+        doc.addImage(img, 'png', 0, 0, pageW, pageH);
+        doc.setFontSize(12);
+        doc.text(`Aguascalientes, Ags.`, 190, 46, { align: "right" });
+        doc.text('CONSULTA VIRTUAL', pageW / 2, 57, { renderingMode: "fillThenStroke", align: "center" });
+        doc.text(`Fecha: ${event.Fecha}`, pageW - 45, 57, { renderingMode: "fillThenStroke" });
+
+        //Body
+        doc.text(`Datos del paciente: ${event.Apellidos} ${event.Nombre}`, 14, 70, { renderingMode: "fillThenStroke" });
+
+        doc.text(`Peso: ${event.Peso}`, 14, 77);
+        doc.text(`Talla: ${event.Talla}`, 14, 84);
+        doc.text(`Temperatura: ${event.Temperatura}`, 14, 91);
+        doc.text(`Presión arterial: ${event.Presion_A}`, 14, 98);
+        doc.text(`Pulso: ${event.Pulso}`, 14, 105);
+        doc.text(`Malestar: ${event.Malestar}`, 14, 112);
+
+        doc.text('OBSERVACIONES', pageW / 2, 125, { renderingMode: "fillThenStroke", align: "center" });
+        doc.text(`Diagnostico: ${event.Diagnostico}`, 14, 138);
+        doc.text(`Nota: ${event.Nota}`, 14, 150);
+
+        doc.save("Consulta.pdf");
   }
 
 }

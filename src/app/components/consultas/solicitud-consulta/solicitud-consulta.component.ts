@@ -21,7 +21,7 @@ export class SolicitudConsultaComponent implements OnInit {
     Fecha: ['',[Validators.required]],
     Malestar: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
     Peso:['',[Validators.required, Validators.pattern(this.soloNumeros)]],
-    Talla: ['',[Validators.required, Validators.pattern(this.soloNumeros)]],
+    Talla: ['',[Validators.required]],
     Temperatura:['',[Validators.required, Validators.pattern(this.soloNumeros)]],
     Presion_A:['',[Validators.required]],
     Pulso: ['', [Validators.required, Validators.pattern(this.soloNumeros)]],
@@ -69,6 +69,7 @@ export class SolicitudConsultaComponent implements OnInit {
       data.Malestar = data.Malestar?.trim();
       data.Diagnostico = "";
       data.Nota = "";
+      data.Talla = Number(data.Talla);
       console.log(data);
       
       this.pacienteID = Number(this.pacienteID);

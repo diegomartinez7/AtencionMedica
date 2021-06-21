@@ -75,12 +75,12 @@ module.exports = {
     },
     // Post de expediente
     postExpediente: (connection, body, callback) => {
-        connection.query('insert into expediente SET ?', body, (err, results) =>{
+        connection.query('insert into expediente (ID_Paciente, ID_Consulta, Resultado) values (?,?,?)', [body.ID_Paciente, body.ID_Consulta, body.Resultado], (err, results) =>{
             if (err) { 
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                 return; 
             } 
-            callback({ array: null, id: null, success: true });
+            callback({ array: results, id: results.id, success: true });
         });
     },
     // Actualizar expediente
