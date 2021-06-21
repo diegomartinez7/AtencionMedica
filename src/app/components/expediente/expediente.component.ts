@@ -19,6 +19,7 @@ import { PacientesService } from '../registro-pacientes/pacientes-service';
 })
 export class ExpedienteComponent implements OnInit {
   pacientes: any = [];
+  expedientes: any = []; //s
   historial: any = [];
 
   expedienteColumnas: string[] = ['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados'];

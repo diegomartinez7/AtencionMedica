@@ -1,23 +1,112 @@
-<div class="container bg-success" id="titulo">
-    <h1 class="text-center" >Inicio de sesion</h1>
+<div class="text-center">
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Inicio Sesion</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Registrar Usuario</button>
+    </li>
+
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+      <!-- Uno -->
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
+        <div class="container bg-success" id="titulo">
+            <h1 class="text-center" >Inicio de sesion</h1>
+            
+        </div>
+        <div class="container bg-light">
+            <form  class="row" id="forma" [formGroup]="formRegistro">
+                  
+                <div class="input-group flex-nowrap" id="cuerpo">
+                <span class="input-group-text" id="addon-wrapping">email</span>
+                <input type="email" class="form-control" name="correo" [ngModelOptions]="{standalone: true}" [(ngModel)]="correo" placeholder="email@gmail.com" required aria-describedby="addon-wrapping">
+                </div>
+        
+                <div class="input-group flex-nowrap" id="cuerpo">
+                    <span class="input-group-text" id="addon-wrapping">Contraseña</span>
+                    <input type="password" class="form-control" name="contra" [ngModelOptions]="{standalone: true}" [(ngModel)]="contra" placeholder="******" required aria-describedby="addon-wrapping">  
+                </div>
+            </form>
+            <div class="mb-2 p-3 row bg-light">
+                
+                <button class="btn btn-success col-4 mx-auto" (click)="validacionLogin()" >Enviar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Dos -->
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <form class="mx-auto p-4 bg-light" [formGroup]="formRegistro">
+            <div class="mb-3">
+                <label for="nombre" class="form-label text-success fw-bolder">Nombre: </label>
+                <input type="text" class="form-control" id="nombre" formControlName="Nombre" name="nombre">
+                <small class="text-danger d-block" *ngIf="isValidField('Nombre')">
+                    Debes escribir un nombre válido. Sólo se permiten letras
+                </small>
+            </div>
+            <div class="mb-3">
+                <label for="apellidos" class="form-label text-success fw-bolder">Apellidos: </label>
+                <input type="text" class="form-control" id="apellidos" formControlName="Apellidos" name="apellidos">
+                <small class="text-danger d-block" *ngIf="isValidField('Apellidos')">
+                    Debes escribir un valor válido. Sólo se permiten letras
+                </small>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label text-success fw-bolder">Correo: </label>
+                <input type="email" class="form-control" id="correo" formControlName="Correo" name="correo">
+                <small class="text-danger d-block" *ngIf="isValidField('Correo')">
+                    Debes escribir un correo electronico.
+                </small>
+            </div>
+            <div class="mb-3">
+                <label for="contrasena" class="form-label text-success fw-bolder">Contraseña: </label>
+                <input type="password" class="form-control" id="contrasena" formControlName="Contrasena" name="contrasena">
+                <small class="text-danger d-block" *ngIf="isValidField('Contrasena')">
+                    Debes escribir una contraseña.
+                </small>
+            </div>
+            <!-- -->
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-6 col-xl-4">
+                        <label for="telefono" class="form-label text-success fw-bolder">Telefono: </label>
+                        <input type="text" class="form-control" id="telefono" formControlName="Telefono" name="telefono">
+                        <small class="text-danger d-block" *ngIf="isValidField('Telefono')">
+                            Debes escribir un valor válido. Sólo se permiten números.
+                        </small>
+                    </div>
+                    <div class="col-6 col-xl-4 mb-3 mb-xl-0">
+                        <label for="tipo" class="form-label text-success fw-bolder">Tipo de registro: </label>
+                        <select class="form-select" aria-label="Default select example" formControlName="Tipo" id="tipo">
+                            <option value="nada" selected>Seleccione una opción</option>
+                            <option value="1">Doctor</option>
+                            <option value="2">Enfermera</option>
+                            <option value="3">Personal</option>
+                        </select>
+                        <small class="text-danger d-block" *ngIf="isValidField('Tipo')">
+                            Debes seleccionar un valor.
+                        </small>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <label for="disponibilidad" class="form-label text-success fw-bolder">Disponibilidad: </label>
+                        <select class="form-select" aria-label="Default select example" formControlName="Disponibilidad" id="disponibilidad">
+                            <option value="nada" selected>Seleccione una opción</option>
+                            <option value="1">Disponible</option>
+                            <option value="2">Ocupado</option>
+                        </select>
+                        <small class="text-danger d-block" *ngIf="isValidField('Disponibilidad')">
+                            Debes seleccionar un valor.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!---->
+        </form>
+        <div class="mb-2 p-3 row bg-light">
+            <button class="btn btn-secondary col-4 mx-auto" (click)="clearForm()">Limpiar</button>
+            <button class="btn btn-success col-4 mx-auto" (click)="sendData()" >Enviar</button>
+        </div>
+    </div>
     
+  </div>
 </div>
-<div class="container bg-light">
-    <form action="" class="row" id="forma">
-          
-        <div class="input-group flex-nowrap" id="cuerpo">
-        <span class="input-group-text" id="addon-wrapping">email</span>
-        <input type="email" class="form-control" name="correo" [(ngModel)]="correo" placeholder="email@gmail.com" required aria-describedby="addon-wrapping">
-        </div>
-
-        <div class="input-group flex-nowrap" id="cuerpo">
-            <span class="input-group-text" id="addon-wrapping">Contraseña</span>
-            <input type="password" class="form-control" name="contra" [(ngModel)]="contra" placeholder="******" required aria-describedby="addon-wrapping">  
-        </div>
-
-        <div class="col-12">
-        <button type="submit" class="btn btn-primary" (click)="validacionLogin()">Entrar</button>
-        </div>
-    </form>
-</div>
-
