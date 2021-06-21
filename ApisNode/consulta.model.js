@@ -1,7 +1,7 @@
 module.exports = {
     // Get todas las consultas
     getAll: (connection, callback) => {
-        connection.query('select * from consulta', (err, results) => {
+        connection.query('SELECT ID_Paciente, ID_Consulta, Nombre, Apellidos, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota FROM expediente as E, paciente as P, consulta as C WHERE E.ID_Paciente = P.ID && E.ID_Consulta = C.ID', (err, results) => {
             if (err) {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
                 return;
@@ -11,7 +11,7 @@ module.exports = {
     },
     // Get por ID
     getId: (connection, id, callback) => {
-        connection.query('select * from consulta where ID = ' + id, (err, results) => {
+        connection.query('SELECT ID_Paciente, ID_Consulta, Nombre, Apellidos, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota FROM expediente as E, paciente as P, consulta as C WHERE E.ID_Paciente = P.ID && E.ID_Consulta = C.ID && P.ID = ?', id, (err, results) => {
             if (err) { 
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                 return; 
@@ -21,7 +21,7 @@ module.exports = {
                 callback({ array: null, id: null, success: false, message: 'No existe el id'}); 
                 return;
             }
-            callback({ array: results[0], id: null, success: true });
+            callback({ array: results, id: null, success: true });
         })
     },
     // Post de consulta
@@ -31,7 +31,7 @@ module.exports = {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                 return; 
             } 
-            callback({ array: null, id: null, success: true });
+            callback({ array: results, id: results.id, success: true });
         });
     },
     // Actualizar consulta

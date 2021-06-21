@@ -1,0 +1,10 @@
+.close-button{
+    cursor: pointer;
+    color: red;
+}
+
+.scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 90vh !important;
+}

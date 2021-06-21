@@ -337,19 +337,20 @@ router.put('/expediente', [
 // ------------------------ SOLICITUDES DE CONSULTA
 
 // Alta de solicitudes, recibe un body con los campos de consulta
-router.post('/solicitud',[
+router.post('/solicitud/:id',[
+    param('id').not().isEmpty().isNumeric(),
     body('Fecha').not().isEmpty().isString(),
     body('Malestar').not().isEmpty().isString(),
     body('Peso').not().isEmpty().isNumeric(),
     body('Talla').not().isEmpty().isNumeric(),
     body('Temperatura').not().isEmpty().isNumeric(),
     body('Presion_A').not().isEmpty().isString(),
-    body('Pulso').not().isEmpty().isString(),
+    body('Pulso').not().isEmpty().isNumeric(),
     body('Diagnostico').not().isEmpty().isString(),
     body('Nota').not().isEmpty().isString()
 ], (req,res) =>{
-
-    arraySolicitudes.push(req.body); // añade al arraySolicitudes una nueva soicitud
+    // añade al arraySolicitudes una nueva soicitud
+    arraySolicitudes.push({ 'ID': req.params.id, 'solicitud': req.body});
     // console.log('dentro ',JSON.stringify(arraySolicitudes));
     res.json({status: 200, success: true}) // retorna un json exitoso
 });

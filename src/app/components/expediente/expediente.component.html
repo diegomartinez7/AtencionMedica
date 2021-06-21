@@ -34,7 +34,7 @@
         </ng-container>
         <ng-container matColumnDef="Poblacion">
             <th mat-header-cell *matHeaderCellDef>Poblacion</th>
-            <td mat-cell *matCellDef="let expediente">{{expediente.Poblacion}}</td>
+            <td mat-cell *matCellDef="let expediente">{{expediente.Poblacion | titlecase}}</td>
         </ng-container>
         <ng-container matColumnDef="Enfermedades">
             <th mat-header-cell *matHeaderCellDef>Enfermedades</th>
@@ -55,17 +55,32 @@
                     [@detailExpand]="event == expandedEvent ? 'expanded' : 'collapsed'">
                     <div class="mt-2">
                         <h6><b>Consultas:</b></h6>
-                        <!-- <p>{{event.observations? event.observations : '[No hay observaciones para mostrar]'}}</p> -->
+                        <div *ngFor="let consulta of event.consultas; let i = index">
+                            <p>No.{{i+1}}</p>
+                            <ul>
+                                <li>Fecha: {{consulta.Fecha}}</li>
+                                <li>Malestar: {{consulta.Malestar}}</li>
+                                <li>Peso: {{consulta.Peso}}</li>
+                                <li>Talla: {{consulta.Talla}}</li>
+                                <li>Temperatura: {{consulta.Temperatura}}</li>
+                                <li>Presión arterial: {{consulta.Presion_A}}</li>
+                                <li>Pulso: {{consulta.Pulso}}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </td>
         </ng-container>
 
         <!-- Definición de la fila de headers, las filas en general y la expansión de contenido en las filas -->
-        <tr mat-header-row *matHeaderRowDef="['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']; sticky: true"></tr>
-        <tr class="event-row" mat-row
-            *matRowDef="let row; columns: ['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']"
+        <tr mat-header-row *matHeaderRowDef="expedienteColumnas; sticky: true"></tr>
+        <tr class="event-row" mat-row *matRowDef="let row; columns: expedienteColumnas"
             (dblclick)="expandedEvent = expandedEvent === row? null : row"></tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="event-detail-height"></tr>
     </table>
 </div>
+
+<!-- <div *ngFor="let e of dataSourceExpedientes.data">
+    <th>Apellidos</th>
+    <td>{{e.paciente?.Apellidos}}</td>
+</div> -->

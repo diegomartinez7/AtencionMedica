@@ -1,0 +1,88 @@
+<div class="container my-3">
+    <h1 class="text-center">Registro especializado de consultas</h1>
+</div>
+
+<form class="mx-auto p-4" [formGroup]="formRegistro">
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-12 col-xl-6 mb-3 mb-xl-0">
+                <label for="paciente" class="form-label text-success fw-bolder">Paciente: </label>
+                <select class="form-select" [(ngModel)]="pacienteID" (ngModelChange)="obtenerPaciente($event)" 
+                    id="paciente" name="pacienteID" [ngModelOptions]="{standalone: true}">
+                    <option value="" selected>Elegir paciente</option>
+                    <option [value]="paciente.ID" *ngFor="let paciente of pacientes">
+                        {{paciente.Apellidos + ' ' + paciente.Nombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-12 col-xl-6 mb-3 mb-xl-0">
+                <label for="fecha" class="form-label text-success fw-bolder">Fecha: </label>
+                <input type="text" class="form-control" id="fecha" formControlName="Fecha" name="fecha">
+                <small class="text-danger d-block" *ngIf="isValidField('Fecha')">
+                    El campo no puede estar vacío
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="malestar" class="form-label text-success fw-bolder">Malestar: </label>
+        <textarea class="form-control" id="malestar" formControlName="Malestar" name="malestar">
+        </textarea>
+        <small class="text-danger d-block" *ngIf="isValidField('Malestar')">
+            Debes escribir un valor válido. Sólo se permiten letras
+        </small>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-6 col-xl-4">
+                <label for="peso" class="form-label text-success fw-bolder">Peso: </label>
+                <input type="number" class="form-control" id="peso" min="0" formControlName="Peso" name="peso">
+                <small class="text-danger d-block" *ngIf="isValidField('Peso')">
+                    Sólo se permiten números.
+                </small>
+            </div>
+            <div class="col-6 col-xl-4 mb-3 mb-xl-0">
+                <label for="talla" class="form-label text-success fw-bolder">Talla: </label>
+                <input type="number" class="form-control" id="talla" min="0" formControlName="Talla" name="talla">
+                <small class="text-danger d-block" *ngIf="isValidField('Talla')">
+                    Sólo se permiten números.
+                </small>
+            </div>
+            <div class="col-12 col-xl-4">
+                <label for="temperatura" class="form-label text-success fw-bolder">Temperatura: </label>
+                <input type="number" class="form-control" id="temperatura" min="0" formControlName="Temperatura" name="temperatura">
+                <small class="text-danger d-block" *ngIf="isValidField('Temperatura')">
+                    Sólo se permiten números.
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-6">
+                <label for="presion_A" class="form-label text-success fw-bolder">Presión arterial: </label>
+                <input type="text" class="form-control" id="presion_A" formControlName="Presion_A" name="presion_A">
+                <small class="text-danger d-block" *ngIf="isValidField('Presion_A')">
+                    El campo no puede estar vacío
+                </small>
+            </div>
+            <div class="col-6">
+                <label for="pulso" class="form-label text-success fw-bolder">Pulso: </label>
+                <input type="text" class="form-control" id="pulso" formControlName="Pulso" name="pulso">
+                <small class="text-danger d-block" *ngIf="isValidField('Pulso')">
+                    El campo no puede estar vacío.
+                </small>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="mb-2 p-3 row">
+    <button class="btn btn-secondary col-4 mx-auto" (click)="clearForm()">Limpiar</button>
+    <button class="btn btn-success col-4 mx-auto" (click)="sendData()" [disabled]="formRegistro.invalid">Enviar</button>    
+</div>
+
+<div class="text-center">
+    <app-llamada *ngIf="!formRegistro.invalid && permitirLlamada"></app-llamada>
+</div>
+

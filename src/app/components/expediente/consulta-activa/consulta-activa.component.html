@@ -1,0 +1,51 @@
+<section class="row bg-light">
+    <article class="col-12 col-xl-6 border-end border-bottom pt-2">
+        <h3 class="text-center">Consulta activa</h3>
+        <div class="p-4">
+            <p><b>Paciente: </b>{{paciente.Apellidos + ' ' + paciente.Nombre}}</p>
+            <p><b>Fecha: </b>{{solicitud.solicitud?.Fecha}}</p>
+            <p><b>Malestar: </b>{{solicitud.solicitud?.Malestar}}</p>
+            <p><b>Peso: </b>{{solicitud.solicitud?.Peso}}</p>
+            <p><b>Talla: </b>{{solicitud.solicitud?.Talla}}</p>
+            <p><b>Temperatura: </b>{{solicitud.solicitud?.Temperatura}}</p>
+            <p><b>Presión arterial: </b>{{solicitud.solicitud?.Presion_A}}</p>
+            <p><b>Pulso: </b>{{solicitud.solicitud?.Pulso}}</p>
+            <div>
+                <label for="diagnostico" class="form-label text-success fw-bolder">Diagnóstico: </label>
+                <textarea class="form-control" name="diagnostico" id="diagnostico" 
+                    [(ngModel)]="solicitud.solicitud.Diagnostico"></textarea>
+            </div>
+            <div>
+                <label for="nota" class="form-label text-success fw-bolder mt-3">Nota: </label>
+                <textarea class="form-control" name="nota" id="nota" 
+                    [(ngModel)]="solicitud.solicitud.Nota"></textarea>
+            </div>
+        </div>
+    </article>
+    <article class="col-12 col-xl-6 border-start border-bottom pt-2">
+        <h3 class="text-center">Expediente</h3>
+        <div class="p-4">
+            <p><b>Genero: </b>{{(paciente.Genero=='M')? 'Masculino' : 'Femenino'}}</p>
+            <p><b>Edad: </b>{{paciente?.Edad}}</p>
+            <p><b>Nivel socioeconómico: </b>{{paciente?.Nivel_S | titlecase}}</p>
+            <p><b>Poblacion: </b>{{paciente?.Poblacion | titlecase}}</p>
+            <p><b>Tipo_E: </b>{{paciente?.Tipo_E}}</p>
+            <p><b>Enfermedades: </b>{{paciente?.Enfermedades}}</p>
+            <div class="scroll border border-2">
+                <div *ngFor="let consulta of expediente.consultas; let i = index" class="border-bottom">
+                    <h5 class="text-success">Consulta {{i+1}}:</h5>
+                    <p><b>Fecha: </b>{{consulta.Fecha}}</p>
+                    <p><b>Malestar: </b>{{consulta.Malestar}}</p>
+                    <p><b>Peso: </b>{{consulta.Peso}}</p>
+                    <p><b>Talla: </b>{{consulta.Talla}}</p>
+                    <p><b>Temperatura: </b>{{consulta.Temperatura}}</p>
+                    <p><b>Presion_A: </b>{{consulta.Presion_A}}</p>
+                    <p><b>Pulso: </b>{{consulta.Pulso}}</p>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<div class="text-center mt-4">
+    <button class="btn btn-success" (click)="sendData()">Finalizar consulta</button>
+</div>

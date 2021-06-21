@@ -1,0 +1,9 @@
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+.scroll {
+    overflow: auto !important;
+    height: 35vh !important;
+}

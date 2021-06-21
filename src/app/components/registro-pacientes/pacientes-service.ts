@@ -15,6 +15,10 @@ export class PacientesService {
         return this.httpClient.get(this.endpoint) as Observable<any>;
     }
 
+    getByID(pacienteID: number): Observable<any> {
+        return this.httpClient.get(this.endpoint + `/${pacienteID}`) as Observable<any>;
+    }
+
     create(newPaciente: any): Observable<any> {
         return this.httpClient.post(this.endpoint, newPaciente) as Observable<any>;
     }
