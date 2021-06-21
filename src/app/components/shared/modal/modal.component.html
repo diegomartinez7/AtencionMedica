@@ -7,4 +7,6 @@
 <div class="scroll">
     <app-registro-pacientes *ngIf="informacion.tipo == 'Paciente'"></app-registro-pacientes>
     <app-solicitud-consulta *ngIf="informacion.tipo == 'Consulta'"></app-solicitud-consulta>
+    <app-consulta-activa [solicitud]="informacion.solicitud" *ngIf="informacion.tipo == 'ConsultaActiva'">
+    </app-consulta-activa>
 </div>

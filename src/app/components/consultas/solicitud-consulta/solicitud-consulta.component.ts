@@ -9,7 +9,7 @@ import { ConsultasService } from '../consultas.service';
   styleUrls: ['./solicitud-consulta.component.css']
 })
 export class SolicitudConsultaComponent implements OnInit {
-  soloTexto = /^[a-zA-Z\s]*$/;
+  soloTexto =  /^([^0-9]*)$/;
   soloNumeros = /^\d+$/;
 
   pacientes: any = [];

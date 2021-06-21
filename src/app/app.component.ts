@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
+import { ModalComponent } from './components/shared/modal/modal.component';
 import { SesionesService } from './sesiones.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { SesionesService } from './sesiones.service';
 })
 
 export class AppComponent implements OnInit{
+  @ViewChild('link') link!: ElementRef;
+
   title = 'AtencionMedica';
   estado: boolean = true;
   routeEvents: any;
@@ -17,7 +21,10 @@ export class AppComponent implements OnInit{
   solicitudes: any = [];
   solicitud: any = {};
 
-  constructor(private router: Router, private _sesionesService: SesionesService){
+  constructor(private router: Router,
+    private _sesionesService: SesionesService,
+    private dialog: MatDialog
+  ){
     this.routeEvents = this.router.events.subscribe((event: NavigationEvent) => {
       if(event instanceof NavigationStart) {
         this.currentRoute = event.url;
@@ -72,12 +79,24 @@ export class AppComponent implements OnInit{
   }
 
   async popSolicitud(index: number){
-  this.solicitud = await this._sesionesService.obtenersolicitud(index).toPromise();
-  this.solicitud = this.solicitud.solicitud;
-  console.log("Solicitud",JSON.stringify(this.solicitud));
-  this.solicitudes = await this._sesionesService.obtenerSolicitudes().toPromise();
-  this.solicitudes = this.solicitudes.solicitudes;
-  
+    this.solicitud = await this._sesionesService.obtenersolicitud(index).toPromise();
+    this.solicitud = this.solicitud.solicitud;
+    console.log(this.solicitud);
+    this.solicitudes = await this._sesionesService.obtenerSolicitudes().toPromise();
+    this.solicitudes = this.solicitudes.solicitudes;
+    this.link.nativeElement.click();
+
+    const modalRespuesta = await this.dialog.open(ModalComponent, {
+      //Establecemos la información a mandarle al modal
+      data: {
+        tipo: "ConsultaActiva", //Especificamos que el modal sea de consulta
+        solicitud: this.solicitud
+      },
+      width: '100vh',
+      height: 'auto'
+    }).afterClosed().toPromise();
+
+    console.log(modalRespuesta);
   }
 
   ngOnDestroy(){

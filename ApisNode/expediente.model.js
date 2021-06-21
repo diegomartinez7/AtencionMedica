@@ -1,11 +1,14 @@
 var pc = {};
 var cl = [];
 var pac = [];
-var expedientes = []
+var expedientes = [];
+
 async function setPaciente(data){
+    console.log(data);
     pc = data;
 }
 async function setConsulta(data){
+    console.log(data);
     cl = data;
 }
 
@@ -14,14 +17,15 @@ async function setPacientes(data){
 }
 
 async function pushArray(paciente,consultas){
+    expedientes = await (expedientes.length > pac.length)? [] : expedientes;
     expedientes.push({paciente: paciente,consultas: consultas});
     console.log('EXPEDIENTES =>' + JSON.stringify(expedientes));
 }
 
 module.exports = { 
     // Get todos los expedientes
-    getAll: (connection, callback) => {
-        connection.query('select * from paciente', (err, results) => {
+    getAll: async(connection, callback) => {
+        await connection.query('select * from paciente', (err, results) => {
             if (err) {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
                 return;
@@ -31,12 +35,11 @@ module.exports = {
             console.log(JSON.stringify(pac));
         })
         for(let i = 0; i < pac.length; i++){
-            connection.query(`SELECT ID, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota from consulta join (SELECT * from expediente WHERE ID_Paciente = ${pac[i]['ID']}) as b on b.ID_Consulta = consulta.ID`,(err,results) =>{
+            await connection.query('SELECT C.ID, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota FROM consulta as C, expediente as E WHERE E.ID_Paciente = ?', pac[i]['ID'], (err,results) =>{
                 if(err){
                     callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                     return; 
                 }
-                console.log('Consultas por paciente ' + pac[i]['ID'] + " = " + results);
                 pushArray(pac[i],results) // añade al paciente y sus consultas a expedientes
             })
         }
@@ -59,7 +62,7 @@ module.exports = {
             }
             setPaciente(results[0]); // define el valor de pc
         })
-        connection.query(`SELECT ID, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota from consulta join (SELECT * from expediente WHERE ID_Paciente = ${id}) as b on b.ID_Consulta = consulta.ID`,async(err, results) =>{
+        connection.query(`SELECT C.ID, Fecha, Malestar, Peso, Talla, Temperatura, Presion_A, Pulso, Diagnostico, Nota, Resultado FROM consulta as C, expediente as E WHERE E.ID_Paciente = ?`, id, async(err, results) =>{
             if(err){
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) }); 
                 return; 
