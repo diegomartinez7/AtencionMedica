@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms'
+import { PacientesService } from './pacientes-service';
 
 @Component({
   selector: 'app-registro-pacientes',
@@ -25,7 +26,7 @@ export class RegistroPacientesComponent implements OnInit {
     Tipo_E:['',[Validators.required]],
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private _pacientesService: PacientesService) { }
 
   ngOnInit(): void {
   }
@@ -51,12 +52,21 @@ export class RegistroPacientesComponent implements OnInit {
     this.formRegistro.reset();
   }
 
-  sendData(){
+  async sendData(){
     let data = this.formRegistro.getRawValue();
     data.Nombre = data.Nombre?.trim();
     data.Apellidos = data.Apellidos?.trim();
     data.Enfermedades = data.Enfermedades?.trim();
     console.log(data);
+    
+    try {
+      let respuesta = await this._pacientesService.create(data).toPromise();
+      console.log(respuesta);
+      this.formRegistro.reset();
+    } catch (error) {
+      console.log(error.err);
+    }
+
   }
 
 }
