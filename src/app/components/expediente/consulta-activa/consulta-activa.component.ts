@@ -40,16 +40,21 @@ export class ConsultaActivaComponent implements OnInit {
   }
 
   async sendData(){
+    //Creamos la consulta en la BD y obtenemos el ID asignado
     let response = await this._consultasService.create(this.solicitud.solicitud).toPromise();
-    let consultaID = response.insertId;
+    let consultaID = response.array.insertId;
     console.log(consultaID);
 
+    //Expediente nuevo a ingresar en la BD
     let newExpediente = {
-      ID_Paciente: Number(this.solicitud['ID']),
-      ID_Consulta: consultaID
+      ID_Paciente: 9,
+      ID_Consulta: 3,
+      Resultado: "Por definir"
     }
 
-    await this._expedientesService.create(newExpediente);
+    //Registramos el expediente
+    let resultado = await this._expedientesService.create(newExpediente).toPromise();
+    console.log(resultado);
   }
 
 }

@@ -43,9 +43,9 @@
             </div>
             <div class="col-6 col-xl-4 mb-3 mb-xl-0">
                 <label for="talla" class="form-label text-success fw-bolder">Talla: </label>
-                <input type="number" class="form-control" id="talla" min="0" formControlName="Talla" name="talla">
+                <input type="text" class="form-control" id="talla" formControlName="Talla" name="talla">
                 <small class="text-danger d-block" *ngIf="isValidField('Talla')">
-                    Sólo se permiten números.
+                    El campo no puede estar vacío
                 </small>
             </div>
             <div class="col-12 col-xl-4">

@@ -24,7 +24,7 @@ export class IniciosesionComponent implements OnInit {
   validacionLogin(){
     //LO QUE SIGUE ES SI EL USUARIO PASÓ EL LOG IN
     let usuario = {
-      nombre: "Don Cheto",
+      nombre: "Felipe Gómez",
       correo: this.correo,
       telefono: "9843534"
     }
