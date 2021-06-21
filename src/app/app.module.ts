@@ -21,6 +21,7 @@ import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-p
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
 import { RegistroPacientesComponent } from './components/registro-pacientes/registro-pacientes.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
+import { LlamadaComponent } from './components/llamada/llamada.component;
 import { ConsultasComponent } from './components/consultas/consultas.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
     PieEnfermedadesComponent,
     RegistroPacientesComponent,
     IniciosesionComponent,
+    LlamadaComponent,
     ConsultasComponent,
   ],
   imports: [
