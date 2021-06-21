@@ -3,6 +3,8 @@ import { PacientesService } from '../registro-pacientes/pacientes-service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConsultasService } from './consultas.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-consultas',
@@ -27,7 +29,8 @@ export class ConsultasComponent implements OnInit {
 
   constructor(private _pacientesService: PacientesService,
     private _consultasService: ConsultasService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -69,8 +72,17 @@ export class ConsultasComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
-  hacerConsulta(){
+  async hacerConsulta(){
+    const modalRespuesta = await this.dialog.open(ModalComponent, {
+      //Establecemos la información a mandarle al modal
+      data: {
+        tipo: "Consulta" //AQUÍ SE MANDA QUE EL MODAL SEA DE REGISTRO DE CONSULTA
+      },
+      width: 'auto',
+      height: 'auto'
+    }).afterClosed().toPromise();
 
+    console.log(modalRespuesta);
   }
 
 }

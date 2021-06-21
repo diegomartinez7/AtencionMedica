@@ -3,6 +3,7 @@ import { PacientesService } from '../registro-pacientes/pacientes-service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsuariosService } from '../iniciosesion/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-expediente',
@@ -26,6 +27,7 @@ export class ExpedienteComponent implements OnInit {
 
   constructor(private _pacientesService: PacientesService,
     private cdr: ChangeDetectorRef,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,10 +53,11 @@ export class ExpedienteComponent implements OnInit {
 
   registrarPaciente(){
     //REDIRIGIR A REGISTRO DE PACIENTES O ABRIR UN MODAL Y TENER EL REGISTRO EMBEBIDO
+    this.router.navigateByUrl('/registro_paciente');
 
     //Después de registrar otro expediente volvemos a obtenerlos para actualizar los registros
-    this.getPacientes();
-    this.cdr.markForCheck();  //refrescamos los cambios para la tabla
+    /* this.getPacientes();
+    this.cdr.markForCheck();  //refrescamos los cambios para la tabla */
   }
 
 }

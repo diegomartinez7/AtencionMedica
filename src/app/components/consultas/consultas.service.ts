@@ -30,4 +30,8 @@ export class ConsultasService {
     update(consultaID: number, modifiedConsulta: any): Observable<any> {
         return this.httpClient.put(this.endpoint + `/${consultaID}`, modifiedConsulta) as Observable<any>;
     }
+
+    sendRequest(pacienteID: number, consulta: any): Observable<any> {
+        return this.httpClient.post(this.endpoint + `/${pacienteID}`, consulta) as Observable<any>;
+    }
 }
