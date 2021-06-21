@@ -4,8 +4,6 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { SesionesService } from 'src/app/sesiones.service';
 import { UsuariosService } from 'src/app/components/iniciosesion/usuarios.service'; 
 
-
-
 @Component({
   selector: 'app-iniciosesion',
   templateUrl: './iniciosesion.component.html',
@@ -21,6 +19,11 @@ export class IniciosesionComponent implements OnInit {
   correosReg : any = [];
   contraReg : any = [];
 
+  formRegistro2 = this.formBuilder.group({
+    Correo: ['',[Validators.required]],
+    Contrasena: ['',[Validators.required]],
+  });
+
   formRegistro = this.formBuilder.group({
     Nombre: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
     Apellidos: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
@@ -35,10 +38,17 @@ export class IniciosesionComponent implements OnInit {
   constructor(private router: Router, private _sesionesService: SesionesService, private formBuilder: FormBuilder, private metodosUsuario : UsuariosService) { }
 
   async validacionLogin(){
-    this.correosReg = await this.metodosUsuario.getAll().toPromise();
-    this.correosReg = this.correosReg.array;
+    try {
+      console.log("prueba1");
+      this.correosReg = await this.metodosUsuario.getAll().toPromise();
+       this.correosReg = this.correosReg.array;
+      console.log(JSON.stringify(this.correosReg));
+    } catch (error) {
+      console.log(error);
+    }
+    
     //UNO
-    for(let i=0; i< this.correosReg.lenght; i++ ){
+    /*for(let i=0; i< this.correosReg.lenght; i++ ){
      // for(let j=0; j<8; j++){
         if(this.correosReg[i]['Correo'] == this.correo){
           if(this.correosReg[i]['Contrasena'] == this.contra){
@@ -56,19 +66,24 @@ export class IniciosesionComponent implements OnInit {
           this.router.navigateByUrl('/iniciosesion');
         }
      // }
-    }
+    }*/
     //DOS
+    
     this.correosReg.forEach((correoTemp: any) => {
-      
+      console.log("Entrar for each 1");
+      console.log(this.correo);
       if(correoTemp['Correo'] == this.correo){
+        console.log("IF 1");
         if(correoTemp['Contrasena'] == this.contra){
+          console.log("IF 2");
           let usuario = {
             nombre: correoTemp['Nombre'],
             correo: this.correo
           }
           this._sesionesService.iniciarSesion(usuario);
+          //sendMail()
           this.router.navigateByUrl('/expedientes');
-          console.log(correoTemp);
+          
         }else{
           this.router.navigateByUrl('/iniciosesion');
         }
@@ -107,7 +122,10 @@ export class IniciosesionComponent implements OnInit {
 
   clearForm(){
     this.formRegistro.reset();
-    
+  }
+
+  clearForm2(){
+    this.formRegistro2.reset();
   }
 
   async sendData(){

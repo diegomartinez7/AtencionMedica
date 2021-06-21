@@ -16,22 +16,22 @@
             
         </div>
         <div class="container bg-light">
-            <form action="" class="row" id="forma">
+            <form  class="row" id="forma" [formGroup]="formRegistro">
                   
                 <div class="input-group flex-nowrap" id="cuerpo">
                 <span class="input-group-text" id="addon-wrapping">email</span>
-                <input type="email" class="form-control" name="correo" [(ngModel)]="correo" placeholder="email@gmail.com" required aria-describedby="addon-wrapping">
+                <input type="email" class="form-control" name="correo" [ngModelOptions]="{standalone: true}" [(ngModel)]="correo" placeholder="email@gmail.com" required aria-describedby="addon-wrapping">
                 </div>
         
                 <div class="input-group flex-nowrap" id="cuerpo">
                     <span class="input-group-text" id="addon-wrapping">Contraseña</span>
-                    <input type="password" class="form-control" name="contra" [(ngModel)]="contra" placeholder="******" required aria-describedby="addon-wrapping">  
-                </div>
-        
-                <div class="col-12">
-                <button type="submit" class="btn btn-primary" (click)="validacionLogin()">Entrar</button>
+                    <input type="password" class="form-control" name="contra" [ngModelOptions]="{standalone: true}" [(ngModel)]="contra" placeholder="******" required aria-describedby="addon-wrapping">  
                 </div>
             </form>
+            <div class="mb-2 p-3 row bg-light">
+                
+                <button class="btn btn-success col-4 mx-auto" (click)="validacionLogin()" >Enviar</button>
+            </div>
         </div>
     </div>
     <!-- Dos -->
@@ -88,7 +88,7 @@
                         </small>
                     </div>
                     <div class="col-12 col-xl-4">
-                        <label for="disponibilidad" class="form-label text-success fw-bolder">Tipo de registro: </label>
+                        <label for="disponibilidad" class="form-label text-success fw-bolder">Disponibilidad: </label>
                         <select class="form-select" aria-label="Default select example" formControlName="Disponibilidad" id="disponibilidad">
                             <option value="nada" selected>Seleccione una opción</option>
                             <option value="1">Disponible</option>
@@ -101,12 +101,12 @@
                 </div>
             </div>
             <!---->
-            
         </form>
+        <div class="mb-2 p-3 row bg-light">
+            <button class="btn btn-secondary col-4 mx-auto" (click)="clearForm()">Limpiar</button>
+            <button class="btn btn-success col-4 mx-auto" (click)="sendData()" >Enviar</button>
+        </div>
     </div>
-    <div class="mb-2 p-3 row bg-light">
-        <button class="btn btn-secondary col-4 mx-auto" (click)="clearForm()">Limpiar</button>
-        <button class="btn btn-success col-4 mx-auto" >Enviar</button>
-    </div>
+    
   </div>
 </div>
