@@ -21,7 +21,6 @@ import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-p
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
 import { RegistroPacientesComponent } from './components/registro-pacientes/registro-pacientes.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
-
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { LlamadaComponent } from './components/llamada/llamada.component';
 import { ModalComponent } from './components/shared/modal/modal.component';

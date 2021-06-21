@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SesionesService {
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   iniciarSesion(usuario: any){
     localStorage.setItem('logueado', 'true');
@@ -26,6 +28,14 @@ export class SesionesService {
     let usuarioString = String(localStorage.getItem('usuario'));
     let usuario = JSON.parse(usuarioString);
     return usuario;
+  }
+
+  obtenerSolicitudes(): Observable<any>{
+    return this.httpClient.get('http://localhost:3000/solicitud') as Observable<any>;
+  }
+
+  obtenersolicitud(index: number): Observable<any>{
+    return this.httpClient.get(`http://localhost:3000/solicitud/${index}`) as Observable<any>;
   }
 
 }
