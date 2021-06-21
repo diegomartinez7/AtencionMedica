@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms'
+import { FormBuilder, Validators} from '@angular/forms';
 import { PacientesService } from './pacientes-service';
 
 @Component({
@@ -8,13 +8,9 @@ import { PacientesService } from './pacientes-service';
   styleUrls: ['./registro-pacientes.component.css']
 })
 export class RegistroPacientesComponent implements OnInit {
-
-  //campos 
-
   soloTexto = /^[a-zA-Z\s]*$/;
   soloNumeros = /^\d+$/;
 
-  sexo: string = '';
   formRegistro = this.formBuilder.group({
     Nombre: ['',[Validators.required,Validators.pattern(this.soloTexto)]],
     Apellidos: ['',[Validators.required,Validators.pattern(this.soloTexto)]],

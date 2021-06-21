@@ -21,8 +21,11 @@ import { BarrasPoblacionComponent } from './components/barras-poblacion/barras-p
 import { PieEnfermedadesComponent } from './components/pie-enfermedades/pie-enfermedades.component';
 import { RegistroPacientesComponent } from './components/registro-pacientes/registro-pacientes.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
-import { LlamadaComponent } from './components/llamada/llamada.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
+import { LlamadaComponent } from './components/llamada/llamada.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SolicitudConsultaComponent } from './components/consultas/solicitud-consulta/solicitud-consulta.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
     IniciosesionComponent,
     LlamadaComponent,
     ConsultasComponent,
+    ModalComponent,
+    SolicitudConsultaComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,13 +51,14 @@ import { ConsultasComponent } from './components/consultas/consultas.component';
     MatIconModule,
     MatTooltipModule,
     MatTableModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true, hasBackdrop: true } },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

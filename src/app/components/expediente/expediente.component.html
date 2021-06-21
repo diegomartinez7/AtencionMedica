@@ -62,9 +62,8 @@
         </ng-container>
 
         <!-- Definición de la fila de headers, las filas en general y la expansión de contenido en las filas -->
-        <tr mat-header-row *matHeaderRowDef="['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']; sticky: true"></tr>
-        <tr class="event-row" mat-row
-            *matRowDef="let row; columns: ['Apellidos', 'Nombre', 'Genero', 'Edad', 'Poblacion', 'Enfermedades', 'Resultados']"
+        <tr mat-header-row *matHeaderRowDef="expedienteColumnas; sticky: true"></tr>
+        <tr class="event-row" mat-row *matRowDef="let row; columns: expedienteColumnas"
             (dblclick)="expandedEvent = expandedEvent === row? null : row"></tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="event-detail-height"></tr>
     </table>
