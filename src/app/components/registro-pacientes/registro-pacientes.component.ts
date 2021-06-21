@@ -11,7 +11,7 @@ export class RegistroPacientesComponent implements OnInit {
 
   //campos 
 
-  soloTexto = /^[a-zA-Z\s]*$/;
+  soloTexto = /^[a-zA-Z\s]*$/; //j
   soloNumeros = /^\d+$/;
 
   sexo: string = '';
@@ -48,7 +48,7 @@ export class RegistroPacientesComponent implements OnInit {
     }
   }
 
-  clearForm(){
+  clearForm(){//
     this.formRegistro.reset();
   }
 

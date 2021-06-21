@@ -18,7 +18,7 @@ import { UsuariosService } from '../iniciosesion/usuarios.service';
 })
 export class ExpedienteComponent implements OnInit {
   pacientes: any = [];
-  expedientes: any = [];
+  expedientes: any = []; //s
 
   dataSourceExpedientes = new MatTableDataSource<any>();
   expandedEvent: any | null;
